@@ -12,8 +12,6 @@ type AuthController struct {
 }
 
 type AuthResponse struct {
-	mixins.View
-
 	AccessToken  string `json:"accessToken"`
 	RefreshToken string `json:"refreshToken"`
 }
