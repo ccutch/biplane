@@ -23,8 +23,6 @@ type Account struct {
 }
 
 type AccountLink struct {
-	mixins.View
-
 	Link   string
 	Avatar string
 	Name   string

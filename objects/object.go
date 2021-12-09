@@ -1,13 +1,5 @@
 package objects
 
-import "biplane.build/auth"
-
-type Any = interface{}
-type User = auth.User
-
-type Parser func(Any) error
-type Handler func(Parser) error
-
 type Object struct {
 	ID    int    `json:"id"`
 	Owner int    `json:"owner"`

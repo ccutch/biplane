@@ -11,7 +11,9 @@ type Model struct {
 	object *objects.Object
 }
 
-func SetObject(o *objects.Object)
+func (m *Model) SetObject(o *objects.Object) {
+	m.object = o
+}
 
 func (m *Model) ID() int {
 	return m.object.ID

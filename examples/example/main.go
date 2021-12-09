@@ -6,6 +6,7 @@ import (
 
 	"biplane.build"
 	"biplane.build/mixins"
+	"biplane.build/prefab"
 	"biplane.build/server"
 	"github.com/gorilla/mux"
 )
@@ -54,7 +55,11 @@ func (c App) CreateAccount(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	biplane.TakeOff(server.Config{
-		Port:    8080,
-		Routers: []server.Router{new(App)},
+		Port: 8080,
+		Routers: []server.Router{
+			new(prefab.AuthController),
+
+			new(App),
+		},
 	})
 }

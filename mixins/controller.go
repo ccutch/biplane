@@ -2,7 +2,6 @@ package mixins
 
 import (
 	"encoding/json"
-	"io"
 	"net/http"
 
 	"biplane.build/auth"
@@ -25,7 +24,7 @@ func (c Controller) Handler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello world"))
 }
 
-func (c Controller) SetConfig(conf server.Config) {
+func (c Controller) Configure(conf server.Config) {
 	c.config = conf
 }
 
@@ -37,8 +36,12 @@ func (c Controller) Fail(w http.ResponseWriter, err error) {
 	http.Error(w, err.Error(), http.StatusInternalServerError)
 }
 
-func (c Controller) Display(w io.Writer, d Viewable) {
-	d.Display(w)
+func (c Controller) Display(w http.ResponseWriter, d interface{}) {
+	err := json.NewEncoder(w).Encode(d)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 func (c Controller) ParseJSON(r *http.Request, v interface{}) error {

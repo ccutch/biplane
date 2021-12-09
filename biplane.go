@@ -16,8 +16,8 @@ func TakeOff(conf server.Config) {
 	r := mux.NewRouter()
 
 	for _, s := range conf.Routers {
-		if s, ok := s.(server.WithConfig); ok {
-			s.SetConfig(conf)
+		if s, ok := s.(server.Configurer); ok {
+			s.Configure(conf)
 		}
 
 		s.Routes(r)

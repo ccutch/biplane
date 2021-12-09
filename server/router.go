@@ -6,6 +6,6 @@ type Router interface {
 	Routes(*mux.Router)
 }
 
-type WithConfig interface {
-	SetConfig(Config)
+type Configurer interface {
+	Configure(Config)
 }
