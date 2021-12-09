@@ -14,7 +14,6 @@ import (
 // and setup any hooks.
 func TakeOff(conf server.Config) {
 	r := mux.NewRouter()
-	u := fmt.Sprintf("%s:%d", conf.Host, conf.Port)
 
 	for _, s := range conf.Routers {
 		if s, ok := s.(server.WithConfig); ok {
@@ -24,6 +23,12 @@ func TakeOff(conf server.Config) {
 		s.Routes(r)
 	}
 
+	p := conf.Port
+	if p == 0 {
+		p = 8080
+	}
+
+	u := fmt.Sprintf("%s:%d", conf.Host, p)
 	log.Printf("Server online and listening at %s", u)
 	http.ListenAndServe(u, r)
 }

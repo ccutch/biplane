@@ -7,6 +7,7 @@ import (
 	"biplane.build"
 	"biplane.build/mixins"
 	"biplane.build/server"
+	"github.com/gorilla/mux"
 )
 
 type Account struct {
@@ -31,7 +32,14 @@ type App struct {
 	mixins.Controller
 }
 
-func (c App) Handler(w http.ResponseWriter, r *http.Request) {
+func (c App) Routes(r *mux.Router) {
+	s := r.PathPrefix("/").Subrouter()
+
+	s.Methods("POST").Path("/create").
+		HandlerFunc(c.CreateAccount)
+}
+
+func (c App) CreateAccount(w http.ResponseWriter, r *http.Request) {
 	var a Account
 	c.ParseJSON(r, &a)
 
