@@ -15,28 +15,33 @@ type Account struct {
 	Name string
 }
 
+func (a Account) Greeting() Greeting {
+	return Greeting{
+		Message: fmt.Sprintf("Hello %s", a.Name),
+	}
+}
+
 type Greeting struct {
 	mixins.View
 
-	Greeting string
+	Message string
 }
 
 type App struct {
 	mixins.Controller
 }
 
-func (a App) Handler(w http.ResponseWriter, r *http.Request) {
-	var account Account
-	var greeting Greeting
+func (c App) Handler(w http.ResponseWriter, r *http.Request) {
+	var a Account
+	c.ParseJSON(r, &a)
 
-	_, err := a.Objects().Get(1, &account)
+	_, err := c.Objects().New(c.User(r), "Account", &a)
 	if err != nil {
-		a.Fail(err)
+		c.Fail(w, err)
 		return
 	}
 
-	greeting.Greeting = fmt.Sprintf("Hello %s", account.Name)
-	greeting.Display(w)
+	c.Display(w, a.Greeting())
 }
 
 func main() {

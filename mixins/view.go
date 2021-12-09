@@ -1,6 +1,12 @@
 package mixins
 
-import "io"
+import (
+	"io"
+)
+
+type Viewable interface {
+	Display(io.Writer)
+}
 
 type View struct{}
 
