@@ -17,6 +17,10 @@ func TakeOff(conf server.Config) {
 	u := fmt.Sprintf("%s:%d", conf.Host, conf.Port)
 
 	for _, s := range conf.Routers {
+		if s, ok := s.(server.WithConfig); ok {
+			s.SetConfig(conf)
+		}
+
 		s.Routes(r)
 	}
 

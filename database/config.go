@@ -1,6 +1,8 @@
 package database
 
+import "database/sql"
+
 type Config interface {
 	Setup() error
-	ConnectionString() string
+	Client() *sql.DB
 }
