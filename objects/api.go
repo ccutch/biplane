@@ -3,8 +3,8 @@ package objects
 import (
 	"encoding/json"
 
-	"biplane.build/auth"
-	"biplane.build/database"
+	"github.com/ccutch/biplane/auth"
+	"github.com/ccutch/biplane/database"
 )
 
 type Any = interface{}

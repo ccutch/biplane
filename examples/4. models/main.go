@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"biplane.build"
-	"biplane.build/mixins"
-	"biplane.build/server"
+	"github.com/ccutch/biplane"
+	"github.com/ccutch/biplane/mixins"
+	"github.com/ccutch/biplane/server"
 )
 
 type App struct {

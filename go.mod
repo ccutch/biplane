@@ -1,4 +1,4 @@
-module biplane.build
+module github.com/ccutch/biplane
 
 go 1.17
 

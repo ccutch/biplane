@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"biplane.build/database"
+	"github.com/ccutch/biplane/database"
 	"golang.org/x/crypto/bcrypt"
 )
 

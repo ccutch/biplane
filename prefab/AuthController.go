@@ -3,7 +3,7 @@ package prefab
 import (
 	"net/http"
 
-	"biplane.build/mixins"
+	"github.com/ccutch/biplane/mixins"
 	"github.com/gorilla/mux"
 )
 

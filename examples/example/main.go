@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"biplane.build"
-	"biplane.build/mixins"
-	"biplane.build/prefab"
-	"biplane.build/server"
+	"github.com/ccutch/biplane"
+	"github.com/ccutch/biplane/mixins"
+	"github.com/ccutch/biplane/prefab"
+	"github.com/ccutch/biplane/server"
 	"github.com/gorilla/mux"
 )
 

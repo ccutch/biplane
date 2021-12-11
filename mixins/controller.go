@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"biplane.build/auth"
-	"biplane.build/objects"
-	"biplane.build/server"
+	"github.com/ccutch/biplane/auth"
+	"github.com/ccutch/biplane/objects"
+	"github.com/ccutch/biplane/server"
 	"github.com/gorilla/mux"
 )
 
@@ -29,7 +29,7 @@ func (c Controller) Configure(conf server.Config) {
 }
 
 func (c Controller) Objects() objects.API {
-	return objects.NewClient(c.config.Database)
+	return objects.NewClient(c.config.DBConfig)
 }
 
 func (c Controller) Fail(w http.ResponseWriter, err error) {

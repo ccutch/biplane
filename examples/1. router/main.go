@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"biplane.build"
-	"biplane.build/server"
+	"github.com/ccutch/biplane"
+	"github.com/ccutch/biplane/server"
 	"github.com/gorilla/mux"
 )
 

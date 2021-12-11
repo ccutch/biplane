@@ -22,7 +22,6 @@ func (s Object) NewEdge(p string, o Object) (*Edge, error) {
 }
 
 func (s Object) Edge(p string, h Handler) ([]Edge, error) {
-
 	var edges []Edge
 	sql := `
 	select o.id, o.owner, o.kind, o.data
