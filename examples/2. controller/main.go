@@ -6,6 +6,7 @@ import (
 	"biplane.build"
 	"biplane.build/mixins"
 	"biplane.build/server"
+	"github.com/gorilla/mux"
 )
 
 // This time we are going to use the controller mixin
@@ -16,8 +17,12 @@ type App struct {
 
 // We are given a default handler with the controller mixin
 // but we will define our own here
-func (a App) Handler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("My App Controller!"))
+func (a App) Routes(r *mux.Router) {
+	handler := func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("My App Controller!"))
+	}
+
+	r.Methods("GET").Path("/").HandlerFunc(handler)
 }
 
 func main() {
