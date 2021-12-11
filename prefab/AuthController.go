@@ -28,7 +28,7 @@ func (c AuthController) Routes(r *mux.Router) {
 	s.Methods("GET").Path("/tokens/validate").
 		HandlerFunc(c.ValidateTokens)
 
-	s.Methods("POST").Path("/tokens/exchange").
+	s.Methods("GET").Path("/tokens/exchange").
 		HandlerFunc(c.ExchangeTokens)
 }
 

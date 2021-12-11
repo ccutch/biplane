@@ -6,6 +6,7 @@ import (
 	"biplane.build"
 	"biplane.build/mixins"
 	"biplane.build/server"
+	"github.com/gorilla/mux"
 )
 
 //!!! Important Note !!!
@@ -30,7 +31,14 @@ type AccountLink struct {
 	Name   string
 }
 
-func (a App) Handler(w http.ResponseWriter, r *http.Request) {
+func (a App) Routes(r *mux.Router) {
+	s := r.NewRoute().Subrouter()
+
+	s.Methods("GET").Path("/").
+		HandlerFunc(a.ShowAccountLink)
+}
+
+func (a App) ShowAccountLink(w http.ResponseWriter, r *http.Request) {
 	a.Display(w, AccountLink{
 		Link:   "/my-profile",
 		Avatar: "data:jpg...",
